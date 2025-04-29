@@ -1,0 +1,58 @@
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Guest Home";
+    var username = Context.Session.GetString("Username");
+}
+
+<div class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl py-8 sm:py-12 lg:max-w-none">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Welcome, @username!</h2>
+
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="group relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">New Request</h3>
+                        <p class="text-gray-500 mb-4">Create a new request for Admin, IT, HR, or other departments.</p>
+                        <a href="@Url.Action("Create", "Request")" 
+                           class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                            Create Request
+                            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Active Requests</h3>
+                        <p class="text-gray-500 mb-4">View and track the status of your current active requests.</p>
+                        <a href="@Url.Action("ActiveRequests", "Request")" 
+                           class="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500">
+                            View Active Requests
+                            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Old Requests</h3>
+                        <p class="text-gray-500 mb-4">View your completed requests or reactivate old requests if needed.</p>
+                        <a href="@Url.Action("OldRequests", "Request")" 
+                           class="inline-flex items-center rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500">
+                            View Old Requests
+                            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

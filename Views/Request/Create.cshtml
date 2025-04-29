@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Create Request";
+}
+
+<div class="min-h-full">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl">
+            <div class="bg-white shadow sm:rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-6">Create New Request</h2>
+                    
+                    <form method="post" asp-action="Create" class="space-y-6">
+                        <div>
+                            <label for="requestType" class="block text-sm font-medium text-gray-700">Request Type</label>
+                            <select id="requestType" name="requestType" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                @foreach (var type in (ViewBag.RequestTypes ?? new[] { "Admin", "IT", "HR", "Miscellaneous" }) as string[])
+                                {
+                                    <option value="@type">@type</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <div class="mt-1">
+                                <input type="text" id="subject" name="subject" required maxlength="100"
+                                       class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                       placeholder="Brief summary of your request">
+                            </div>
+                            <p class="mt-1 text-sm text-gray-500">Maximum 100 characters</p>
+                        </div>
+
+                        <div>
+                            <label for="details" class="block text-sm font-medium text-gray-700">Details</label>
+                            <div class="mt-1">
+                                <textarea id="details" name="details" rows="4" required
+                                          class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                          placeholder="Provide detailed information about your request"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end gap-x-3">
+                            <a href="@Url.Action("GuestHome", "Request")" 
+                               class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                Cancel
+                            </a>
+                            <button type="submit" 
+                                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                Submit Request
+                            </button>
+                        </div>
+                    </form>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="mt-4 rounded-md bg-red-50 p-4">
+                            <div class="flex">
+                                <div class="text-sm text-red-700">@ViewBag.Error</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
